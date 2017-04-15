@@ -1,0 +1,30 @@
+From 5cc67e39f3d6eb8a09a0e7d54ae3cd3fb84a53de Mon Sep 17 00:00:00 2001
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Date: Mon, 23 Jan 2017 12:07:45 -0600
+Subject: [PATCH 05/11] platform/x86: fix typo in comment
+
+s/Acumulate/Accumulate/
+
+Signed-off-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Signed-off-by: Stephen Boyd <sboyd@codeaurora.org>
+---
+ include/linux/platform_data/x86/pmc_atom.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/linux/platform_data/x86/pmc_atom.h b/include/linux/platform_data/x86/pmc_atom.h
+index aa8744c..e4905fe 100644
+--- a/include/linux/platform_data/x86/pmc_atom.h
++++ b/include/linux/platform_data/x86/pmc_atom.h
+@@ -50,7 +50,7 @@
+ 				BIT_ORED_DEDICATED_IRQ_GPSC | \
+ 				BIT_SHARED_IRQ_GPSS)
+ 
+-/* The timers acumulate time spent in sleep state */
++/* The timers accumulate time spent in sleep state */
+ #define	PMC_S0IR_TMR		0x80
+ #define	PMC_S0I1_TMR		0x84
+ #define	PMC_S0I2_TMR		0x88
+-- 
+2.7.4
+

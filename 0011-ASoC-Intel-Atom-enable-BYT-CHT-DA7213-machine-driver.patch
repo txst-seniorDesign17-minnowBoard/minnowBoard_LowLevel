@@ -1,0 +1,41 @@
+From 861173d75849d3ac794b9386c6b846bb9bfa25c0 Mon Sep 17 00:00:00 2001
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Date: Thu, 2 Mar 2017 20:56:09 -0600
+Subject: [PATCH 11/11] ASoC: Intel: Atom: enable BYT/CHT+DA7213 machine driver
+
+Add entries in HID table and reference to bytcht_da7213 driver
+
+Signed-off-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+---
+ sound/soc/intel/atom/sst/sst_acpi.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/sound/soc/intel/atom/sst/sst_acpi.c b/sound/soc/intel/atom/sst/sst_acpi.c
+index 988144f..18fe46e 100644
+--- a/sound/soc/intel/atom/sst/sst_acpi.c
++++ b/sound/soc/intel/atom/sst/sst_acpi.c
+@@ -480,6 +480,10 @@ static struct sst_acpi_mach sst_acpi_bytcr[] = {
+ 						&byt_rvp_platform_data },
+ 	{"10EC5651", "bytcr_rt5651", "intel/fw_sst_0f28.bin", "bytcr_rt5651", NULL,
+ 						&byt_rvp_platform_data },
++	{"DLGS7212", "bytcht_da7213", "intel/fw_sst_0f28.bin", "bytcht_da7213", NULL,
++						&byt_rvp_platform_data },
++	{"DLGS7213", "bytcht_da7213", "intel/fw_sst_0f28.bin", "bytcht_da7213", NULL,
++						&byt_rvp_platform_data },
+ 	/* some Baytrail platforms rely on RT5645, use CHT machine driver */
+ 	{"10EC5645", "cht-bsw-rt5645", "intel/fw_sst_0f28.bin", "cht-bsw", NULL,
+ 						&byt_rvp_platform_data },
+@@ -511,6 +515,10 @@ static struct sst_acpi_mach sst_acpi_chv[] = {
+ 
+ 	{"193C9890", "cht-bsw-max98090", "intel/fw_sst_22a8.bin", "cht-bsw", NULL,
+ 						&chv_platform_data },
++	{"DLGS7212", "bytcht_da7213", "intel/fw_sst_22a8.bin", "bytcht_da7213", NULL,
++						&chv_platform_data },
++	{"DLGS7213", "bytcht_da7213", "intel/fw_sst_22a8.bin", "bytcht_da7213", NULL,
++						&chv_platform_data },
+ 	/* some CHT-T platforms rely on RT5640, use Baytrail machine driver */
+ 	{"10EC5640", "bytcr_rt5640", "intel/fw_sst_22a8.bin", "bytcr_rt5640", cht_quirk,
+ 						&chv_platform_data },
+-- 
+2.7.4
+

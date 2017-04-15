@@ -1,0 +1,51 @@
+From d1fa9a1a86268f914c00f25a8821c1f77d11fed9 Mon Sep 17 00:00:00 2001
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Date: Fri, 3 Mar 2017 06:16:32 -0600
+Subject: [PATCH 08/11] ASoC: Intel: Enable bytcht_nocodec machine driver
+
+Make sure this machine driver is only used if enabled explicitly
+and if there is no information found in the SSDT.
+
+Signed-off-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+---
+ sound/soc/intel/atom/sst/sst_acpi.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/sound/soc/intel/atom/sst/sst_acpi.c b/sound/soc/intel/atom/sst/sst_acpi.c
+index 747c0f3..988144f 100644
+--- a/sound/soc/intel/atom/sst/sst_acpi.c
++++ b/sound/soc/intel/atom/sst/sst_acpi.c
+@@ -485,7 +485,14 @@ static struct sst_acpi_mach sst_acpi_bytcr[] = {
+ 						&byt_rvp_platform_data },
+ 	{"10EC5648", "cht-bsw-rt5645", "intel/fw_sst_0f28.bin", "cht-bsw", NULL,
+ 						&byt_rvp_platform_data },
+-
++#if IS_ENABLED(CONFIG_SND_SOC_INTEL_BYT_CHT_NOCODEC_MACH)
++	/*
++	 * This is always last in the table so that it is selected only when
++	 * enabled explicitly and there is no codec-related information in SSDT
++	 */
++	{"80860F28", "bytcht_nocodec", "intel/fw_sst_0f28.bin", "bytcht_nocodec", NULL,
++						&byt_rvp_platform_data },
++#endif
+ 	{},
+ };
+ 
+@@ -512,6 +519,14 @@ static struct sst_acpi_mach sst_acpi_chv[] = {
+ 	/* some CHT-T platforms rely on RT5651, use Baytrail machine driver */
+ 	{"10EC5651", "bytcr_rt5651", "intel/fw_sst_22a8.bin", "bytcr_rt5651", NULL,
+ 						&chv_platform_data },
++#if IS_ENABLED(CONFIG_SND_SOC_INTEL_BYT_CHT_NOCODEC_MACH)
++	/*
++	 * This is always last in the table so that it is selected only when
++	 * enabled explicitly and there is no codec-related information in SSDT
++	 */
++	{"808622A8", "bytcht_nocodec", "intel/fw_sst_22a8.bin", "bytcht_nocodec", NULL,
++						&chv_platform_data },
++#endif
+ 	{},
+ };
+ 
+-- 
+2.7.4
+
